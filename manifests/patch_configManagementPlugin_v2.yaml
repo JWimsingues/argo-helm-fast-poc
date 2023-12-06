@@ -2,7 +2,7 @@ configManagementPlugins: |
 - name: helm-resolver
   init:
     command: [bash, -c]
-    args: ["helm --registry-config /tmp/config/helm/registry/config.json --repository-cache /tmp/helm/repository --repository-config /tmp/config/helm/repositories.yaml repo add repo add ${REPO_NAME} ${REPO_URL}"]
+    args: ["helm --registry-config /tmp/config/helm/registry/config.json --repository-cache /tmp/helm/repository --repository-config /tmp/config/helm/repositories.yaml repo add ${REPO_NAME} ${REPO_URL}"]
   generate:
     command: [bash, -c]
-    args: ["helm --registry-config /tmp/config/helm/registry/config.json --repository-cache /tmp/helm/repository --repository-config /tmp/config/helm/repositories.yaml template -n $ARGOCD_APP_NAMESPACE --values ${VALUES_NAME} $ARGOCD_APP_NAME hashicorp/vault --version ${CHART_VERSION}"]
+    args: ["helm --registry-config /tmp/config/helm/registry/config.json --repository-cache /tmp/helm/repository --repository-config /tmp/config/helm/repositories.yaml template -n $ARGOCD_APP_NAMESPACE --values ${VALUES_NAME} $ARGOCD_APP_NAME ${CHART_NAME} --version ${CHART_VERSION}"]
