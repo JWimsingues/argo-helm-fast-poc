@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sample-app
+spec:
+  destination:
+    namespace: test-1
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: .
+    plugin:
+      env:
+        - name: REPO_NAME
+          value: hashicorp
+        - name: REPO_URL
+          value: https://helm.releases.hashicorp.com
+        - name: CHART_VERSION
+          value: '0.27.0'
+        - name: VALUES_NAME
+          value: mycustomvalues.yaml
+      name: helm-resolver
+    repoURL: https://github.com/JWimsingues/argo-helm-fast-poc
