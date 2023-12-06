@@ -64,6 +64,10 @@ export VAULT_TOKEN=${ROOT_TOKEN}
 vault operator unseal -tls-skip-verify ${KEYS}
 ```
 
+# Improvements
+I have commited 2 more files on the manifests folder with `_2` suffix. This could be an improvement of the current setup to avoid using a hard coded helm registry.
+However I did not spend the time to bootstrap them to see if it is working as intended. This could be more scallable as if you are running multiple template in your helm registry you could easily change that from one Application to another. 
+
 # History / References / researches
 The goal of this repository was to do so because some companies do have their own helm repository and they are using it as a template for several micro services.
 That being said, I was looking for a solution to implement such a setup (having the values in one git repository while using the chart from another source).
@@ -74,4 +78,5 @@ During my researches, I came up with a few knowledge and here are the useful lin
 - [Multiple source reference as a target for 2.6](https://github.com/argoproj/argo-cd/issues/15032) - so it should be implemented on 2.6.3, but for some reason, it is not working properly (Aug 13, 2023)
 - [Multiple source beta documentation page](https://argo-cd.readthedocs.io/en/stable/user-guide/multiple_sources/) - bêta - so can not be recommanded for production
 - [Config Management Plugins as a CRD approach documentation](https://argo-cd.readthedocs.io/en/stable/operator-manual/config-management-plugins/)
-- Special mention for Red Hat Openshift GitOps operator which is not always following the latest version of ArgoCD: [link to the documentation](https://docs.openshift.com/gitops/1.10/release_notes/gitops-release-notes.html)
+- Special warning for Red Hat Openshift GitOps operator which is not always following the latest version of ArgoCD: [link to the documentation](https://docs.openshift.com/gitops/1.10/release_notes/gitops-release-notes.html)
+- [Environement variables implementation inside a plugin](https://argo-cd.readthedocs.io/en/stable/operator-manual/config-management-plugins/#using-environment-variables-in-your-plugin), be careful this is changing from one version to another recently so if you update it, be aware that this might be broken and some prefix might need to be added to your `configManagementPlugin`.
