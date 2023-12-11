@@ -10,8 +10,12 @@ spec:
   project: default
   sources:
   - repoURL: 'https://helm.releases.hashicorp.com'
-    chart: hashicorp/vault
+    chart: vault
     targetRevision: 0.27.0
-  - repoURL: 'https://github.com/JWimsingues/argo-helm-fast-poc'
+    helm:
+      valueFiles:
+      - $values/mycustomvalues.yaml
+  - repoURL: https://github.com/JWimsingues/argo-helm-fast-poc
     targetRevision: HEAD
-    ref: mycustomvalues.yaml
+    path: .
+    ref: values
