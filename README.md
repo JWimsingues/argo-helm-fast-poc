@@ -15,7 +15,7 @@ Install Openshift GitOps operator, stable channel.
 # Quick setup
 
 Get access to ArgoCD:
-```
+```bash
 # If not already done, add the appropriate credentials so ArgoCD can deploy everywhere in the cluster
 # Note that you can also deploy your own ArgoCD instance somewhere else, then you would need the credentials
 # to access to it in the same way
@@ -28,13 +28,13 @@ oc get route
 ```
 
 Prepare app destination:
-```
+```bash
 # Create a new project as a target for the application
 oc new-project test-1
 ```
 
 Update the configuration of ArgoCD:
-```
+```bash
 # Move to the openshift-gitops project if you are using the default ArgoCD instance
 oc project openshift-gitops
 oc edit argocd <argocd_instance>
@@ -47,7 +47,7 @@ Deploy the app:
 Navigate to the ArgoCD instance and deploy the app by creating a new application and copy pasting the content of the `manifests/app.yaml` file.
 Note that the app will not be ready as you need to apply a few commands into the vault pod so it makes the probes healphy.
 Here are the command to apply to the pod on the test-1 project:
-```
+```bash
 # Exec to the vault pod
 oc exec -it vault-0 -- /bin/sh
 # Initialise the configuration of the vault, please refer to Vault documentation
