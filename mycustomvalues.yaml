@@ -20,8 +20,6 @@ server:
     repository: "registry.connect.redhat.com/hashicorp/vault"
     tag: "1.14.0-ubi"
   annotations: |
-    test-add-one-annotation: test-1
-    test-2-annotations: test-2
-    test-3-adding-annot: commit-this
-    test4: test
-    add-another-one: try-2
+    test1: value1
+    test2: value2
+    test3: value3
